@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto de Venta - Dashboard</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-title">Punto de Venta</h1>
+                <p class="sidebar-subtitle">Sistema de Gestión</p>
+            </div>
+            <div class="sidebar-nav">
+                <a href="index.html" class="nav-item active">Dashboard</a>
+                <a href="products.html" class="nav-item">Productos</a>
+                <a href="customers.html" class="nav-item">Clientes</a>
+                <a href="sales.html" class="nav-item">Ventas</a>
+                <a href="expenses.html" class="nav-item">Gastos</a>
+                <a href="bank.html" class="nav-item">Bancos</a>
+                <a href="reports.html" class="nav-item">Reportes</a>
+                <a href="config.html" class="nav-item">Configuración</a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <h1 class="main-title">Dashboard</h1>
+                <p class="main-subtitle">Resumen general del negocio</p>
+            </header>
+
+            <div class="main-body">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="todaySales">$0</div>
+                        <div class="stat-label">Ventas Hoy</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="monthSales">$0</div>
+                        <div class="stat-label">Ventas del Mes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalBalance">$0</div>
+                        <div class="stat-label">Balance Total</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="monthProfit">$0</div>
+                        <div class="stat-label">Ganancia del Mes</div>
+                    </div>
+                </div>
+
+                <!-- Alerts -->
+                <div id="alertsContainer"></div>
+
+                <!-- Main Dashboard Content -->
+                <div class="d-flex gap-lg">
+                    <!-- Recent Sales -->
+                    <div class="card" style="flex: 2;">
+                        <div class="card-header">
+                            <h3 class="card-title">Ventas Recientes</h3>
+                            <p class="card-subtitle">Últimas 5 transacciones</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <th>Cliente</th>
+                                            <th>Total</th>
+                                            <th>Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recentSalesTable">
+                                        <tr>
+                                            <td colspan="4" class="text-center">Cargando...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="sales.html" class="btn btn-primary">Ver Todas las Ventas</a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="card" style="flex: 1;">
+                        <div class="card-header">
+                            <h3 class="card-title">Acciones Rápidas</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex flex-column gap-md">
+                                <a href="sales.html" class="btn btn-primary">Nueva Venta</a>
+                                <a href="products.html" class="btn btn-secondary">Gestionar Productos</a>
+                                <a href="customers.html" class="btn btn-secondary">Gestionar Clientes</a>
+                                <a href="expenses.html" class="btn btn-secondary">Registrar Gasto</a>
+                                <a href="reports.html" class="btn btn-secondary">Ver Reportes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bank Accounts Overview -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Cuentas Bancarias</h3>
+                        <p class="card-subtitle">Estado actual de las cuentas</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Banco</th>
+                                        <th>Tipo</th>
+                                        <th>Número</th>
+                                        <th>Saldo</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bankAccountsTable">
+                                    <tr>
+                                        <td colspan="5" class="text-center">Cargando...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="bank.html" class="btn btn-primary">Gestionar Cuentas</a>
+                    </div>
+                </div>
+
+                <!-- Low Stock Alert -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Productos con Stock Bajo</h3>
+                        <p class="card-subtitle">Productos que necesitan reposición</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Categoría</th>
+                                        <th>Stock Actual</th>
+                                        <th>Precio</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="lowStockTable">
+                                    <tr>
+                                        <td colspan="4" class="text-center">Cargando...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="products.html" class="btn btn-primary">Gestionar Productos</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Modal -->
+    <div id="loadingModal" class="modal-overlay d-none">
+        <div class="modal">
+            <div class="modal-body text-center">
+                <div class="spinner" style="margin: 0 auto 16px;"></div>
+                <p>Cargando datos...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../renderer/app.js"></script>
+    <script src="../renderer/dashboard.js"></script>
+</body>
+</html>
