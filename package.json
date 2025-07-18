@@ -1,0 +1,17 @@
+{
+  "name": "pos-system-macos",
+  "version": "1.0.0",
+  "description": "Sistema de Punto de Venta completo para macOS",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev"
+  },
+  "keywords": ["pos", "punto-de-venta", "electron", "macos"],
+  "author": "POS System",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^27.0.0"
+  },
+  "dependencies": {}
+}
